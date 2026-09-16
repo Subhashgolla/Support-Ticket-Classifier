@@ -1,0 +1,49 @@
+text,category
+I forgot my password and cannot sign in,Account Access
+My account is locked after too many login attempts,Account Access
+The password reset link is not working,Account Access
+I changed my password but I still cannot login,Account Access
+I cannot access my profile even with the correct password,Account Access
+My login says the account does not exist,Account Access
+I need help resetting my account password,Account Access
+Two factor authentication is not sending a code,Account Access
+I lost access to my authenticator app,Account Access
+I am getting an invalid credentials message,Account Access
+Please unlock my user account,Account Access
+I cannot sign in after changing my email address,Account Access
+I was charged twice for the same order,Billing
+My invoice has the wrong amount,Billing
+I need a refund for my last payment,Billing
+Why was my credit card charged again,Billing
+My payment was successful but the invoice is unpaid,Billing
+I want to update my billing information,Billing
+There is an unknown charge on my account,Billing
+I did not receive my refund,Billing
+The subscription fee is incorrect,Billing
+My card payment keeps getting declined,Billing
+Can you send me a copy of my invoice,Billing
+I need help understanding this month's bill,Billing
+The application crashes when I open the dashboard,Technical Issue
+The page is blank after I click submit,Technical Issue
+I am getting a server error when uploading a file,Technical Issue
+The website is loading very slowly,Technical Issue
+The mobile app keeps freezing,Technical Issue
+I cannot download the report,Technical Issue
+The API is returning a 500 error,Technical Issue
+The save button is not working,Technical Issue
+My data is not showing on the dashboard,Technical Issue
+The application stopped working after the update,Technical Issue
+I see an error when I try to export data,Technical Issue
+Notifications are not appearing in the application,Technical Issue
+What are your support hours,General Question
+How can I change my profile name,General Question
+Where can I find the user guide,General Question
+Do you have a mobile application,General Question
+How do I contact customer service,General Question
+Can I change my subscription plan,General Question
+Where can I view my account settings,General Question
+How do I update my email address,General Question
+What features are included in my plan,General Question
+Can I use the service outside the United States,General Question
+How can I provide feedback,General Question
+Where can I find information about your plans,General Question

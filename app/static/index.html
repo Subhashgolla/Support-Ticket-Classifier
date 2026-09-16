@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Support Ticket Classifier</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f6f8;margin:0;color:#222}
+main{max-width:760px;margin:60px auto;padding:0 20px}
+.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:24px}
+textarea{box-sizing:border-box;width:100%;min-height:150px;padding:12px;border:1px solid #bbb;border-radius:5px;font:inherit}
+button{margin-top:12px;padding:10px 16px;border:0;border-radius:5px;background:#222;color:#fff;cursor:pointer}
+#result{margin-top:20px;padding:15px;background:#f1f3f5;border-radius:5px;display:none}
+small{color:#666}
+</style>
+</head>
+<body>
+<main>
+  <h1>Support Ticket Classifier</h1>
+  <p>Enter a support request to classify the ticket.</p>
+  <div class="card">
+    <textarea id="ticket" placeholder="Example: I cannot log in to my account after resetting my password."></textarea>
+    <button onclick="classifyTicket()">Classify Ticket</button>
+    <div id="result"></div>
+  </div>
+</main>
+<script>
+async function classifyTicket(){
+  const text=document.getElementById('ticket').value.trim();
+  const result=document.getElementById('result');
+  if(!text){alert('Enter a support ticket first.');return;}
+  result.style.display='block';
+  result.textContent='Checking ticket...';
+  try{
+    const response=await fetch('/api/classify',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text})
+    });
+    const data=await response.json();
+    if(!response.ok) throw new Error(data.detail || 'Request failed');
+    result.innerHTML=
+      '<strong>Category:</strong> '+data.category+'<br>'+
+      '<strong>Priority:</strong> '+data.priority+'<br>'+
+      '<strong>Assigned team:</strong> '+data.assigned_team+'<br>'+
+      '<small>Model confidence: '+Math.round(data.confidence*100)+'%</small>';
+  }catch(error){
+    result.textContent=error.message;
+  }
+}
+</script>
+</body>
+</html>
