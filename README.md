@@ -1,26 +1,52 @@
 # Support Ticket Classifier
 
-A small machine learning project for classifying support tickets based on the text entered by a user.
+This project is a simple support ticket classification application built using Python and machine learning.
 
-The model predicts a ticket category such as Account Access, Billing, Technical Issue, or General Question. A FastAPI service exposes the model through a REST API, and a simple web page can be used to test predictions.
+The application takes a support ticket as input and predicts the type of issue. Based on the predicted category, it also provides a priority level and the support team that can handle the request.
 
-## Features
+## How It Works
 
-- Train a text classification model from sample support tickets
-- Predict ticket category from ticket text
-- Assign a basic priority and support team based on the predicted category
-- REST API using FastAPI
-- Simple browser interface
-- Save and load the trained model
-- Unit tests for basic API behavior
-- Docker support
+```text
+Support Ticket
+      |
+      v
+Text Processing
+      |
+      v
+TF-IDF
+      |
+      v
+Logistic Regression
+      |
+      v
+Ticket Category
+      |
+      v
+Priority and Support Team
+```
 
-## Technologies
+## Ticket Categories
+
+The current model classifies tickets into four categories:
+
+- Account Access
+- Billing
+- Technical Issue
+- General Question
+
+For example, a ticket such as:
+
+```text
+I cannot sign in to my account after changing my password.
+```
+
+can be classified as an `Account Access` issue.
+
+## Technologies Used
 
 - Python
 - FastAPI
 - scikit-learn
-- NLP / text classification
 - TF-IDF
 - Logistic Regression
 - HTML
@@ -28,32 +54,37 @@ The model predicts a ticket category such as Account Access, Billing, Technical 
 - JavaScript
 - Docker
 - Pytest
-- GitHub Actions
 
 ## Project Structure
 
 ```text
 Support-Ticket-Classifier/
+│
 ├── app/
 │   ├── main.py
 │   ├── classifier.py
 │   └── static/
 │       └── index.html
+│
 ├── data/
 │   └── support_tickets.csv
+│
 ├── model/
+│
 ├── training/
 │   └── train_model.py
+│
 ├── tests/
 │   └── test_classifier.py
+│
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
 ```
 
-## Run the project
+## Running the Project
 
-Install the packages:
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -65,45 +96,44 @@ Train the model:
 python training/train_model.py
 ```
 
-Start the API:
+Start the application:
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Open:
+Open the application in the browser:
 
 ```text
 http://localhost:8000
 ```
 
-Swagger documentation is available at:
+API documentation is available at:
 
 ```text
 http://localhost:8000/docs
 ```
 
-## Example
+## Model
 
-Ticket:
+For the current version, I used TF-IDF to convert the ticket text into numerical features and Logistic Regression for classification.
 
-```text
-I cannot sign in to my account after changing my password.
-```
+The training dataset contains sample support tickets for each of the four categories. The dataset is kept small because the main purpose of this project is to understand the complete process of training a text classifier and using it through an API.
 
-The application returns a predicted category, priority, and support team.
+## Testing
 
-## Docker
+Tests can be run using:
 
 ```bash
-docker build -t support-ticket-classifier .
-docker run -p 8000:8000 support-ticket-classifier
+pytest
 ```
 
 ## Future Improvements
 
-- Add more training data
-- Add ticket history in a database
-- Add user authentication
+Some improvements I would like to add are:
+
+- Increase the training dataset
+- Store submitted tickets in a database
 - Improve priority prediction
-- Deploy the API to AWS
+- Add user login
+- Deploy the application to AWS
